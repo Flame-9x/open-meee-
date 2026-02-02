@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 🩵</title>
+  <style>
+    body {
+      background: #9adbe8;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      background: linear-gradient(135deg, #FCE4EC, #EAF7FB); /* Pink to blue gradient */
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      max-width: 90%;
+      position: relative;
+    }
+
+    h1 {
+      color: #C2185B;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 16px 32px;
+      font-size: 18px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: linear-gradient(45deg, #9ADBE8, #FF69B4); /* Blue to pink gradient */
+      color: white;
+    }
+
+    #noBtn {
+      background: linear-gradient(45deg, #FFB6C1, #9ADBE8); /* Pink to blue gradient */
+      color: #004B5A;
+      transition: all 0.3s ease;
+    }
+
+    #result {
+      display: none;
+    }
+
+    img {
+      width: 240px;
+      margin-top: 20px;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="question">
+      <h1>Will you be my Valentine? 💖</h1>
+      <button id="yesBtn">Yes 💙</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+
+    <div id="result">
+      <h1>YAY!🩵 mwahhh 💋</h1>
+      <p>I love you totyyy🩵</p>
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+      <img src="https://media.giphy.com/media/VbKLOdvCxBFNZpYvhL/giphy.gif">
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+    const result = document.getElementById("result");
+
+    let yesSize = 1;
+
+    noBtn.addEventListener("mouseover", () => {
+      if (yesSize < 3) {
+        yesSize += 0.2;
+        yesBtn.style.transform = `scale(${yesSize})`;
+      }
+      
+      const container = document.querySelector('.container');
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = containerRect.height - btnRect.height;
+      
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+      
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.style.display = "none";
+      result.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
